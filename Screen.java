@@ -3,6 +3,8 @@ package visualsort;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -16,14 +18,14 @@ public class Screen extends JFrame implements Runnable {
 	
 	//boolean for toggling mini mode for the less efficient sorting methods
 	//mini basically means that the list to be sorted is 1/4 of the size
-	boolean isMini = false;
+	boolean isMini = false; //false, but doesn't really matter
 	
 	//string for the name of the sorting algorithm that is running
-	String sortingName = "";
+	String sortingName = ""; 
 	
 	//dimensions of the screen. constants
-	final int SCREENWIDTH = 1400;
-	final int SCREENHEIGHT = 750;
+	final int SCREENWIDTH = 1400; //1400
+	final int SCREENHEIGHT = 750; //750
 	
 	//calendars for the start time and end time for each sort
 	//basically the stopwatch variables
@@ -42,19 +44,19 @@ public class Screen extends JFrame implements Runnable {
 	//the size of the mini list, used for bad algorithms like bubble sort
 	final int MINISIZE = 25000; //25000
 	
-	//the ms waited between each sort
+	//the milliseconds waited between each sort
 	final int SORTDELAY = 0; //0
 	
 	//the width of each visual bar
-	final int BARWIDTH = 1;
+	final int BARWIDTH = 1; //1
 	
 	//the pixel height associated with each integer in the list
-	final int PIXELHEIGHT = 1;
+	final int PIXELHEIGHT = 1; //1
 	
 	//the arraylist to be sorted
 	int[] list = new int[SIZE];
 	
-	//the miniature list, used for sucky algorithms like bubble sort
+	//the miniature list, used for algorithms like bubble sort
 	int[] miniList = new int[MINISIZE];	
 	
 	//the thread
@@ -85,6 +87,9 @@ public class Screen extends JFrame implements Runnable {
 	//default constructor
 	//has screen variables
 	public Screen() {
+		
+		//enables key input
+		addKeyListener(new KeyListener());
 		
 		//jframe properties
 		setVisible(true);
@@ -128,16 +133,19 @@ public class Screen extends JFrame implements Runnable {
 		return list;
 		
 	}
+	
+	
 	//cycles between the different types of sorting algorithms
 	public void sortCycle() {
 		
 		//goes through each sorting method one by one.
+		//currently ordered from most efficient to least efficient
 			
 		selectionSort(list);
 		
 		mergeSort(list);
 		
-		bubbleSort(miniList);
+		bubbleSort(list);
 		
 		countingSort(miniList);
 		
@@ -440,9 +448,6 @@ public class Screen extends JFrame implements Runnable {
 		//prints the regular list if isMini is false
 		if (!isMini) {
 			
-			//sets the regular list bar color
-//			g.setColor(Color.darkGray);
-			
 			for (int i = 0; i < list.length; i+= DOWNSCALE) {
 				
 				int index = i / DOWNSCALE;
@@ -462,9 +467,6 @@ public class Screen extends JFrame implements Runnable {
 		}
 		//displays the miniature list if isMini is true
 		else {
-			
-			//sets the mini list bar color
-//			g.setColor(Color.gray);
 			
 			for (int i = 0; i < miniList.length; i+= MINIDOWNSCALE) {
 				
@@ -489,7 +491,38 @@ public class Screen extends JFrame implements Runnable {
 		
 		//displays the name of the list that is currently being sorted
 		g.drawString(sortingName, SCREENWIDTH / 2 - 50, 50);
-//		repaint();
+		
+	}
+	
+	//class that handles key input
+	class KeyListener extends KeyAdapter {
+		
+		public void keyPressed(KeyEvent e) {
+			
+			int key = e.getKeyCode();
+			
+			switch(key) {
+			
+			case KeyEvent.VK_Q:
+				System.exit(0);
+				break;
+			
+			}
+			
+		}
+		
+		public void keyReleased(KeyEvent e) {
+			
+			int key = e.getKeyCode();
+			
+			switch(key) {
+			
+			
+			
+			}
+			
+		}
+		
 	}
 	
 }
