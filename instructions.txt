@@ -1,4 +1,0 @@
-Have a JFrame
-Visualize an array on the JFrame in real time
-Sort the array
-Try out different sorting methods
