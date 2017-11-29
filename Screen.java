@@ -373,13 +373,13 @@ public class Screen extends JFrame implements Runnable {
 		}
 		
 	}
-	
 	//resets all variables related to sorting the list
 	public void reset() {
 		
 		try {
 			//stops the timer
 			end = Calendar.getInstance();
+			
 			repaint();
 			
 			//pauses so the timer can be seen
@@ -444,6 +444,12 @@ public class Screen extends JFrame implements Runnable {
 	
 	//paints stuff to the JFrame
 	public void paintComponent(Graphics g) {
+		
+		//quits if the sorting name is blank
+		//prevents showing the list during startup
+		if (sortingName.equals("")) {
+			return;
+		}
 		
 		//prints the regular list if isMini is false
 		if (!isMini) {
