@@ -18,10 +18,10 @@ public class Screen extends JFrame implements Runnable {
 	
 	//boolean for toggling mini mode for the less efficient sorting methods
 	//mini basically means that the list to be sorted is 1/4 of the size
-	boolean isMini = false; //false, but doesn't really matter
+	boolean isMini = false; //false, but doesn't really matter b/c it gets reset at the start of every method
 	
 	//string for the name of the sorting algorithm that is running
-	String sortingName = ""; 
+	String sortingName = ""; //"", actually important that it starts as this
 	
 	//dimensions of the screen. constants
 	final int SCREENWIDTH = 1400; //1400
@@ -29,14 +29,14 @@ public class Screen extends JFrame implements Runnable {
 	
 	//calendars for the start time and end time for each sort
 	//basically the stopwatch variables
-	Calendar start = Calendar.getInstance();
-	Calendar end = Calendar.getInstance();
+	Calendar start = Calendar.getInstance(); //Calendar.getInstance()
+	Calendar end = Calendar.getInstance();   //Calendar.getInstance()
 	
 	//the amount of list indexes compressed into each pixel
 	final int DOWNSCALE = 76; //76
 	
 	//the amount of list indexes compressed into each pixel for the mini list
-	final int MINIDOWNSCALE = 19; //20
+	final int MINIDOWNSCALE = 19; //19
 	
 	//the size of the list
 	final int SIZE = 100000; //100000
@@ -54,10 +54,10 @@ public class Screen extends JFrame implements Runnable {
 	final int PIXELHEIGHT = 1; //1
 	
 	//the arraylist to be sorted
-	int[] list = new int[SIZE];
+	int[] list = new int[SIZE]; //new int[SIZE}
 	
 	//the miniature list, used for algorithms like bubble sort
-	int[] miniList = new int[MINISIZE];	
+	int[] miniList = new int[MINISIZE];	//new int[MINISIZE]
 	
 	//the thread
 	public void run() {
@@ -503,6 +503,7 @@ public class Screen extends JFrame implements Runnable {
 			
 			switch(key) {
 			
+			//quits if q is pressed
 			case KeyEvent.VK_Q:
 				System.exit(0);
 				break;
